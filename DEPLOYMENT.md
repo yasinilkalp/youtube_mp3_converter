@@ -19,7 +19,7 @@ git push -u origin main
 ### Adım 3: Ayarlar
 - **Name:** youtube-mp3-converter (veya istediğin isim)
 - **Environment:** Node
-- **Build Command:** `npm install && npm run build`
+- **Build Command:** `npm run build`
 - **Start Command:** `npm start`
 - **Instance Type:** Free (başlangıç için yeterli)
 
@@ -41,7 +41,7 @@ railway login
 
 ### Adım 3: Ayarlar
 Railway otomatik algılar ama manuel kontrol için:
-- **Build Command:** `npm install && npm run build`
+- **Build Command:** `npm run build`
 - **Start Command:** `npm start`
 
 ## Vercel'e Deploy Etme (Sadece Frontend + Serverless)

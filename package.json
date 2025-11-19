@@ -3,9 +3,8 @@
     "version": "1.0.0",
     "description": "Root script to build and start the application",
     "scripts": {
-        "install-all": "npm install && cd client && npm install && cd ../server && npm install",
-        "postinstall": "npm run install-all",
-        "build": "cd client && npm run build",
+        "install-deps": "cd client && npm install && cd ../server && npm install",
+        "build": "npm run install-deps && cd client && npm run build",
         "start": "node server/index.js"
     },
     "engines": {

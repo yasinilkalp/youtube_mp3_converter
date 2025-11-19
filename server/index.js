@@ -41,6 +41,7 @@ app.get('/info', async (req, res) => {
             dumpSingleJson: true,
             noWarnings: true,
             preferFreeFormats: true,
+            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         });
 
         const info = {
@@ -52,8 +53,16 @@ app.get('/info', async (req, res) => {
 
         res.json(info);
     } catch (error) {
-        console.error('Error fetching video info:', error);
-        res.status(500).json({ error: 'Failed to fetch video info' });
+        console.error('Error fetching video info:', error.message);
+
+        // Check if it's a bot detection error
+        if (error.message && error.message.includes('Sign in to confirm')) {
+            return res.status(403).json({
+                error: 'YouTube bot protection activated. Try a different video or wait a few minutes.'
+            });
+        }
+
+        res.status(500).json({ error: 'Failed to fetch video info. Please try again.' });
     }
 });
 
@@ -73,12 +82,13 @@ app.post('/convert', async (req, res) => {
     try {
         console.log('ffmpegPath:', ffmpegPath);
         const process = youtubedl.exec(url, {
-            output: path.join(tempDir, `${jobId}.%(ext)s`), // Changed to dynamic extension
+            output: path.join(tempDir, `${jobId}.%(ext)s`),
             format: 'bestaudio',
             extractAudio: true,
             audioFormat: 'mp3',
             ffmpegLocation: ffmpegPath,
             noPlaylist: true,
+            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         });
 
         process.stdout.on('data', (data) => {

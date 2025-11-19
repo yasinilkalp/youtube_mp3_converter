@@ -4,7 +4,7 @@ const youtubedl = require('yt-dlp-exec');
 const ffmpegPath = require('ffmpeg-static');
 const http = require('http');
 const { Server } = require('socket.io');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -62,7 +62,7 @@ app.post('/convert', async (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL is required' });
 
-    const jobId = uuidv4();
+    const jobId = crypto.randomUUID();
     const outputPath = path.join(tempDir, `${jobId}.mp3`);
     // const outputPath = path.join(tempDir, `${jobId}.mp3`); // This line is removed
 

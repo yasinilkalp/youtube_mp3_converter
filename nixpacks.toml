@@ -1,0 +1,8 @@
+{
+  "nixpkgs": {
+    "packages": [
+      "python3",
+      "ffmpeg"
+    ]
+  }
+}

@@ -40,9 +40,12 @@ railway login
 3. Repo'nu seç
 
 ### Adım 3: Ayarlar
-Railway otomatik algılar ama manuel kontrol için:
+Railway otomatik algılar. `nixpacks.toml` dosyası Python ve ffmpeg'i otomatik kurar.
+
+**Manuel ayar gerekirse:**
 - **Build Command:** `npm run build`
 - **Start Command:** `npm start`
+- **Environment:** Node.js 18.x
 
 ## Vercel'e Deploy Etme (Sadece Frontend + Serverless)
 
